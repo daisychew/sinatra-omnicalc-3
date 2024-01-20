@@ -1,9 +1,14 @@
 require "sinatra"
 require "sinatra/reloader"
+ENV.fetch("GMAPS_KEY")
 
-get("/") do
-  "
-  <h1>Welcome to your Sinatra App!</h1>
-  <p>Define some routes in app.rb</p>
-  "
+get("/umbrella") do
+  erb(:umbrella)
+end
+
+get("/process_umbrella") do
+  @user_location = params.fetch("user_loc")
+
+    HTTP.get("https://maps.googleapis.com/maps/api/geocode/json?address=Merchandise%20Mart%20Chicago&key=GMAPS_KEY"
+  erb(:umbrella_process)
 end
